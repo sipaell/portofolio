@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raffa'el Aditya | Digital Creator</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
+  <style>
+    :root {
+      --primary: #6C4DF6;
+      --primary-dark: #5A3DE8;
+      --secondary: #FF7D59;
+      --dark: #1A1A2E;
+      --light: #F8F9FF;
+      --gray: #E2E8F0;
+    }
+    
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+    
+    /* Glassmorphism Effect */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Neon Glow Effect */
+    .neon-text {
+      text-shadow: 0 0 10px rgba(108, 77, 246, 0.5);
+    }
+    
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* Navigation */
+    .navbar {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    }
+    
+    .nav-link {
+      color: var(--dark);
+      font-weight: 500;
+      position: relative;
+      margin: 0 10px;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #6C4DF6 0%, #1A1A2E 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
+      opacity: 0.4;
+    }
+    
+    .hero-content {
+      z-index: 1;
+    }
+    
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    
+    /* Hero Image Styles - Added */
+    .hero-img-container {
+      position: relative;
+      max-width: 100%;
+      text-align: center;
+    }
+    
+    .hero-img {
+      max-height: 70vh;
+      width: auto;
+      max-width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      transform: perspective(1000px) rotateY(-10deg);
+      transition: transform 0.5s ease;
+      object-fit: contain;
+    }
+    
+    .hero-img:hover {
+      transform: perspective(1000px) rotateY(0deg);
+    }
+    
+    /* Floating Elements */
+    .floating {
+      animation: floating 6s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Skill Cards */
+    .skill-card {
+      transition: all 0.3s ease;
+      border: none;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(108, 77, 246, 0.1) 0%, rgba(255, 125, 89, 0.1) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+    
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .skill-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    /* Project Cards */
+    .project-card {
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: none;
+    }
+    
+    .project-card img {
+      transition: transform 0.5s ease;
+    }
+    
+    .project-card:hover img {
+      transform: scale(1.1);
+    }
+    
+    .project-card .card-overlay {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(26, 26, 46, 0.9);
+      padding: 1.5rem;
+      transition: bottom 0.3s ease;
+    }
+    
+    .project-card:hover .card-overlay {
+      bottom: 0;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+    
+    /* Contact Form */
+    .contact-input {
+      border: none;
+      border-bottom: 2px solid var(--gray);
+      border-radius: 0;
+      padding-left: 0;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-input:focus {
+      box-shadow: none;
+      border-bottom-color: var(--primary);
+    }
+    
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+');
+      opacity: 0.1;
+    }
+    
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.3s ease;
+      text-decoration: none;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .social-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      margin-right: 10px;
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+    
+    /* Back to Top */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 99;
+      box-shadow: 0 5px 20px rgba(108, 77, 246, 0.3);
+    }
+    
+    .back-to-top.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-img {
+        max-height: 50vh;
+        margin-top: 3rem;
+        transform: none;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+      
+      .hero-img {
+        max-height: 40vh;
+      }
+    }
+  </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold gradient-text" href="#">Raffa'el Aditya</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#projects">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="hero-content text-white">
+            <h6 class="text-uppercase text-white-50 mb-3">Hello, I'm</h6>
+            <h1 class="hero-title mb-3 neon-text">Raffa'el Aditya</h1>
+            <h2 class="hero-subtitle mb-4">Student at <span class="gradient-text fw-bold">SMKN4 Tangerang</span> | <span class="gradient-text fw-bold">RPL</span></h2>
+            <p class="mb-4">I'm passionate about web development and digital design, currently expanding my skills in both programming and creative tools.</p>
+            <div class="d-flex gap-3">
+              <a href="#contact" class="btn btn-light btn-lg px-4">Contact Me</a>
+              <a href="#projects" class="btn btn-outline-light btn-lg px-4">View Work</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="floating hero-img-container" data-aos="fade-left">
+            <img src="img/foto1.png" alt="Raffa'el Aditya" class="hero-img">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title">About Me</h2>
+          <p class="text-muted">Get to know me better</p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="glass-card p-4 h-100">
+            <img src="img/foto.jpg" alt="Raffa'el Aditya" class="img-fluid rounded-3 shadow w-100">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="glass-card p-4 h-100">
+            <h3 class="mb-4">Who am I?</h3>
+            <p>I'm a student at SMKN4 Tangerang majoring in Software Engineering (RPL) with a passion for both web development and digital design. I believe in combining technical skills with creative vision to build engaging digital experiences.</p>
+            <p>Currently undergoing an internship program where I'm gaining practical experience in web development while also expanding my skills in video and graphic design.</p>
+            
+            <div class="row mt-4">
+              <div class="col-md-6">
+                <p><strong><i class="bi bi-calendar2 me-2"></i>Date of Birth:</strong> 11 Januari 2008</p>
+                <p><strong><i class="bi bi-envelope me-2"></i>Email:</strong> raffaeladiya354@gmail.com</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong><i class="bi bi-phone me-2"></i>Phone:</strong> 0858 8593 8827</p>
+                <p><strong><i class="bi bi-geo-alt me-2"></i>Location:</strong> Jl.Proklamasi no 110 Kec Karawaci kel Cione Jaya Tangerang, Indonesia</p>
+              </div>
+            </div>
+            
+            <div class="mt-4">
+              <a href="#" class="btn btn-primary me-2">Download CV</a>
+              <a href="#contact" class="btn btn-outline-primary">Hire Me</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-5 bg-light">
+  <div class="container py-5">
+    <div class="row justify-content-center mb-5">
+      <div class="col-lg-8 text-center">
+        <h2 class="section-title">My Skills</h2>
+        <p class="text-muted">Technologies and tools I work with</p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Web Development Skills -->
+      <div class="col-md-4">
+        <div class="skill-card glass-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-code-square skill-icon me-3"></i>
+            <h4 class="mb-0">Web Development</h4>
+          </div>
+          <div class="d-flex flex-wrap">
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">HTML5</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">CSS3</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">Bootstrap</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">JavaScript</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">PHP</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">Laravel</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">MySQL</span>
+            <span class="badge bg-primary-soft text-primary me-2 mb-2 p-2">Git</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Design Skills -->
+      <div class="col-md-4">
+        <div class="skill-card glass-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-palette skill-icon me-3"></i>
+            <h4 class="mb-0">Design & Editing</h4>
+          </div>
+          <div class="d-flex flex-wrap">
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">Canva</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">CapCut</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">PixelLab</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">UI/UX Design</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">Photo Editing</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">Video Editing</span>
+            <span class="badge bg-secondary-soft text-secondary me-2 mb-2 p-2">Graphic Design</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Office Skills -->
+      <div class="col-md-4">
+        <div class="skill-card glass-card p-4 h-100">
+          <div class="d-flex align-items-center mb-3">
+            <i class="bi bi-file-earmark-text skill-icon me-3"></i>
+            <h4 class="mb-0">Office Skills</h4>
+          </div>
+          <div class="d-flex flex-wrap">
+            <span class="badge bg-info-soft text-info me-2 mb-2 p-2">Microsoft Word</span>
+            <span class="badge bg-info-soft text-info me-2 mb-2 p-2">Dasar Excel</span>
+            <span class="badge bg-info-soft text-info me-2 mb-2 p-2">PowerPoint</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-5">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title">My Projects</h2>
+          <p class="text-muted">Some of my recent work</p>
+        </div>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Web Project 1 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="project-card card h-100">
+            <div class="position-relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="School Website">
+              <div class="card-overlay">
+                <h5 class="text-white">School Profile Website</h5>
+                <p class="text-white-50">Responsive website built with Bootstrap</p>
+                <div class="d-flex flex-wrap">
+                  <span class="badge bg-light text-dark me-2 mb-2">HTML</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">CSS</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">Bootstrap</span>
+                </div>
+                <a href="allprojek.html" class="btn btn-sm btn-primary mt-2">View Project</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">School Profile Website</h5>
+              <p class="card-text">Created a responsive school profile website with multiple sections.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Web Project 2 -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-card card h-100">
+            <div class="position-relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Cash App">
+              <div class="card-overlay">
+                <h5 class="text-white">Video Editing App</h5>
+                <p class="text-white-50">Developed a web-based platform for seamless video editing and production.</p>
+                <div class="d-flex flex-wrap">
+                  <span class="badge bg-light text-dark me-2 mb-2">Adobe Premiere Pro</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">CapCut</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">DaVinci Resolve</span>
+                </div>
+                <a href="allprojek.html" class="btn btn-sm btn-primary mt-2">View Project</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Video Editing App</h5>
+              <p class="card-text">Developed a web-based platform for seamless video editing and production..</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Design Project -->
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-card card h-100">
+            <div class="position-relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Design Project">
+              <div class="card-overlay">
+                <h5 class="text-white">Social Media Designs</h5>
+                <p class="text-white-50">Creative designs for social media</p>
+                <div class="d-flex flex-wrap">
+                  <span class="badge bg-light text-dark me-2 mb-2">Canva</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">Premier pro</span>
+                  <span class="badge bg-light text-dark me-2 mb-2">Figma</span>
+                </div>
+                <a href="allprojek.html" class="btn btn-sm btn-primary mt-2">View Project</a>
+              </div>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Social Media Designs</h5>
+              <p class="card-text">Created engaging social media content using design tools.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5">
+        <a href="allprojek.html" class="btn btn-primary">View All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-light">
+    <div class="container py-5">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="text-muted">Feel free to contact me for any questions or opportunities</p>
+        </div>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-5">
+          <div class="glass-card p-4 h-100">
+            <h4 class="mb-4">Contact Information</h4>
+            <div class="mb-4">
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-envelope-fill me-3 text-primary"></i>
+                <div>
+                  <h6 class="mb-0">Email</h6>
+                  <p class="mb-0">raffaeladiya354@gmail.com</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <i class="bi bi-telephone-fill me-3 text-primary"></i>
+                <div>
+                  <h6 class="mb-0">Phone</h6>
+                  <p class="mb-0">0858 8593 8827</p>
+                </div>
+              </div>
+              <div class="d-flex align-items-center">
+                <i class="bi bi-geo-alt-fill me-3 text-primary"></i>
+                <div>
+                  <h6 class="mb-0">Location</h6>
+                  <p class="mb-0">Tangerang, Indonesia</p>
+                </div>
+              </div>
+            </div>
+            
+            <h4 class="mb-3">Follow Me</h4>
+            <div class="d-flex">
+              <a href="#" class="social-icon me-2"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="social-icon me-2"><i class="bi bi-github"></i></a>
+              <a href="#" class="social-icon me-2"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-7">
+          <div class="glass-card p-4 h-100">
+            <h4 class="mb-4">Send Me a Message</h4>
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <input type="text" class="form-control contact-input" placeholder="Your Name" required>
+                </div>
+                <div class="col-md-6">
+                  <input type="email" class="form-control contact-input" placeholder="Your Email" required>
+                </div>
+                <div class="col-12">
+                  <input type="text" class="form-control contact-input" placeholder="Subject">
+                </div>
+                <div class="col-12">
+                  <textarea class="form-control contact-input" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container py-4">
+      <div class="row">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h5 class="text-white mb-4">Raffa'el Aditya</h5>
+          <p>Student at SMKN4 Tangerang specializing in Software Engineering and Digital Design.</p>
+        </div>
+        <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-white mb-4">Quick Links</h5>
+          <ul class="list-unstyled footer-links">
+            <li class="mb-2"><a href="#home">Home</a></li>
+            <li class="mb-2"><a href="#about">About</a></li>
+            <li class="mb-2"><a href="#skills">Skills</a></li>
+            <li class="mb-2"><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+          <h5 class="text-white mb-4">Skills</h5>
+          <ul class="list-unstyled footer-links">
+            <li class="mb-2"><a href="#">Web Development</a></li>
+            <li class="mb-2"><a href="#">Graphic Design</a></li>
+            <li class="mb-2"><a href="#">Video Editing</a></li>
+            <li><a href="#">UI/UX Design</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h5 class="text-white mb-4">Connect</h5>
+          <div class="d-flex">
+            <a href="#" class="social-icon me-2"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="social-icon me-2"><i class="bi bi-github"></i></a>
+            <a href="#" class="social-icon me-2"><i class="bi bi-linkedin"></i></a>
+            <a href="#" class="social-icon"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4 bg-white-10">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">© 2025 Raffa'el Aditya. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="mb-0">Made with <i class="bi bi-heart-fill text-danger"></i> by Raffa'el</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    // Initialize AOS (Animate On Scroll)
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true
+    });
+    
+    // Back to top button
+    const backToTopButton = document.querySelector('.back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.add('active');
+      } else {
+        backToTopButton.classList.remove('active');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Navbar background change on scroll
+    const navbar = document.getElementById('navbar');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('shadow');
+      } else {
+        navbar.classList.remove('shadow');
+      }
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
