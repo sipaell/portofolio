@@ -1,2 +1,2 @@
 # portofolio
-portofolio website pwertama saya
+portofolio website pertama saya
