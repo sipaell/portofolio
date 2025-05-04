@@ -412,8 +412,8 @@
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="py-5">
+ <!-- About Section -->
+<section id="about" class="py-5">
   <div class="container py-5">
     <div class="row justify-content-center mb-5">
       <div class="col-lg-8 text-center">
@@ -445,7 +445,12 @@
           </div>
           
           <div class="mt-4">
-            <a href="#" class="btn btn-primary me-2">Download CV</a>
+            <a href="assets/files/CV_Raffael.pdf" 
+            download="CV_Raffael_Aditya" 
+            class="btn btn-primary me-2" 
+            id="downloadCvBtn">
+           Download CV
+         </a>
             <a href="#contact" class="btn btn-outline-primary me-2">Hire Me</a>
             <!-- WhatsApp Button -->
             <a href="https://wa.me/6285885938827" class="btn btn-outline-primary me-2" target="_blank">
@@ -461,6 +466,7 @@
     </div>
   </div>
 </section>
+
 <!-- Skills Section -->
 <section id="skills" class="py-5 bg-light">
   <div class="container py-5">
@@ -799,6 +805,44 @@
         }
       });
     });
+  </script>
+
+<script>
+  document.getElementById('downloadCvBtn').addEventListener('click', function(e) {
+      // Optional: Tambahkan animasi loading
+      this.innerHTML = '<span class="spinner-border spinner-border-sm" role="status"></span> Downloading...';
+      
+      setTimeout(() => {
+          // Reset teks tombol setelah 3 detik
+          this.innerHTML = 'Download CV';
+      }, 3000);
+      
+      // Error handling otomatis sudah ada di atribut HTML
+  });
+  </script>
+
+<script>
+  // Cek ketersediaan file
+  fetch('assets/files/CV_Raffael.pdf')
+    .then(response => {
+      if (!response.ok) {
+        console.error('File tidak ditemukan! Periksa: assets/files/CV_Raffael.pdf');
+        document.getElementById('downloadCvBtn').classList.add('btn-danger');
+      }
+    })
+    .catch(err => console.error('Error:', err));
+  </script>
+
+<script>
+  // Convert PDF ke base64 dan simpan di sini
+  const pdfBase64 = "data:application/pdf;base64,JVBERi0xLjQK..."; // Isi dengan base64 PDF
+  
+  document.getElementById('downloadCvBtn').onclick = function() {
+    const link = document.createElement('a');
+    link.href = pdfBase64;
+    link.download = 'CV_Raffael_Aditya.pdf';
+    link.click();
+  };
   </script>
 </body>
 </html>
